@@ -47,3 +47,15 @@ function getWeatherData(location, weatherType, numDays, apiKey) {
             console.error('Error fetching weather data:', error);
         });
 }
+function processWeatherData(data) {
+    const processedData = {
+        location: data.name,
+        temperature: data.main.temp,
+        description: data.weather[0].description,
+        humidity: data.main.humidity,
+        pressure: data.main.pressure,
+        windSpeed: data.wind.speed,
+    };
+
+    return processedData;
+}
