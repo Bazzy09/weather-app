@@ -40,13 +40,13 @@ function getWeatherData(location, weatherType, numDays, apiKey) {
             displayWeatherInfo(weatherData);
 
             loading.style.display = 'none';
-            console.log(loading.style);
         })
         .catch(error => {
             loading.style.display = 'none';
             console.error('Error fetching weather data:', error);
         });
 }
+
 function processWeatherData(data) {
     const processedData = {
         location: data.name,
@@ -54,8 +54,15 @@ function processWeatherData(data) {
         description: data.weather[0].description,
         humidity: data.main.humidity,
         pressure: data.main.pressure,
-        windSpeed: data.wind.speed,
+        windSpeed: data.wind.speed
     };
 
     return processedData;
+}
+
+function displayWeatherInfo(data) {
+    weatherInfo.innerHTML = `
+        <h2>Weather Information</h2>
+        <pre>${JSON.stringify(data, null, 2)}</pre>
+    `;
 }
